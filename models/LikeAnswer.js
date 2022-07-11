@@ -1,0 +1,33 @@
+const Sequelize = require('sequelize');
+const database = require('../Database');
+
+const LikeSuggestionAnswer = database.define('like_suggestion_answer', {
+
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+
+    user: {
+        type: Sequelize.STRING,
+        references: {
+            model: "users",
+            key: 'email'
+        },
+        allowNull: false,
+    },
+
+    answerId: {
+        type: Sequelize.INTEGER,
+        references: {
+            model: "answers",
+            key: 'id'
+        },
+        allowNull: false,
+    }
+
+});
+
+module.exports = LikeSuggestionAnswer;
