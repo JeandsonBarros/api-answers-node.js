@@ -17,6 +17,15 @@
                     "bearerAuth": []
                 }
             ]
+        },
+        {
+            "url": "https://api-suas-questoes.herokuapp.com/",
+            "description": "API em produção",
+            "security": [
+                {
+                    "bearerAuth": []
+                }
+            ]
         }
     ],
     "basePath": "/",
