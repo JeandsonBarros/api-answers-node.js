@@ -26,6 +26,11 @@ or
 or 
 `npm install bcrypt cors dotenv express jsonwebtoken mysql2 nodemon pg sequelize swagger-ui-express`
 
+### Database
+
+The database used at the time of development was MySql, but PostgreSql can also be used, just pass the data about the Bank in the Database.js file.
+Tables are created automatically by Sequelize.
+
 ## Functionalities
 
 ### Questions
