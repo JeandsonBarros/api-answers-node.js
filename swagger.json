@@ -922,13 +922,12 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref" : "#/components/schemas/Answer"
+                                "$ref": "#/components/schemas/Answer"
                             },
                             "examples": {
                                 "answer": {
                                     "value": {
                                         "answer": "Resposta: a) 2"
-                                        
                                     }
                                 }
                             }
@@ -946,7 +945,6 @@
                             }
                         }
                     },
-                    
                     "401": {
                         "description": "Acesso negado!.",
                         "content": {
@@ -1024,12 +1022,12 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref" : "#/components/schemas/Answer"
+                                "$ref": "#/components/schemas/Answer"
                             },
                             "examples": {
                                 "answer": {
                                     "value": {
-                                        "answer": "Resposta: b) 3"                  
+                                        "answer": "Resposta: b) 3"
                                     }
                                 }
                             }
@@ -1047,7 +1045,6 @@
                             }
                         }
                     },
-                    
                     "401": {
                         "description": "Acesso negado!.",
                         "content": {
@@ -1118,7 +1115,6 @@
                         "default": "1"
                     }
                 ],
-                
                 "responses": {
                     "200": {
                         "description": "Confirmação de que a sugestão de resposta foi deletada",
@@ -1130,7 +1126,6 @@
                             }
                         }
                     },
-                    
                     "401": {
                         "description": "Acesso negado!.",
                         "content": {
@@ -1151,7 +1146,6 @@
                             }
                         }
                     },
-                   
                     "500": {
                         "description": "Erro ao deletar sugestão de resposta.",
                         "content": {
@@ -1170,11 +1164,6 @@
                 "tags": [
                     "Like de Resposta"
                 ],
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ],
                 "summary": "Quantidade de likes de reposta.",
                 "description": "Retorna a quantidade de likes da resposta sugerida.",
                 "operationId": "getQuantitLikes",
@@ -1187,7 +1176,6 @@
                         "default": "1"
                     }
                 ],
-                
                 "responses": {
                     "200": {
                         "description": "Quantidade de likes",
@@ -1204,7 +1192,6 @@
                             }
                         }
                     },
-                    
                     "404": {
                         "description": "Não existe uma sugestão de resposta com esse id.",
                         "content": {
@@ -1240,7 +1227,6 @@
                 "description": "Salva um  like na sugestão de resposta para questão.",
                 "operationId": "postLike",
                 "parameters": [
-                    
                     {
                         "name": "answerId",
                         "in": "path",
@@ -1249,7 +1235,6 @@
                         "default": "1"
                     }
                 ],
-                
                 "responses": {
                     "201": {
                         "description": "Confirmação de que o like foi salvo.",
@@ -1271,7 +1256,6 @@
                             }
                         }
                     },
-                    
                     "401": {
                         "description": "Acesso negado!.",
                         "content": {
@@ -1292,7 +1276,6 @@
                             }
                         }
                     },
-                   
                     "500": {
                         "description": "Erro ao salvar like.",
                         "content": {
@@ -1307,7 +1290,6 @@
             }
         },
         "/like-answers/{id}": {
-            
             "delete": {
                 "tags": [
                     "Like de Resposta"
@@ -1321,7 +1303,6 @@
                 "description": "Remove like deixado na sugestão de resposta pelo usuário.",
                 "operationId": "deleteLike",
                 "parameters": [
-                    
                     {
                         "name": "id",
                         "in": "path",
@@ -1330,7 +1311,6 @@
                         "default": "1"
                     }
                 ],
-                
                 "responses": {
                     "200": {
                         "description": "Confirmação de que o like foi removido",
@@ -1342,7 +1322,6 @@
                             }
                         }
                     },
-                    
                     "401": {
                         "description": "Acesso negado!.",
                         "content": {
@@ -1363,7 +1342,6 @@
                             }
                         }
                     },
-                   
                     "500": {
                         "description": "Erro ao deletar like.",
                         "content": {
@@ -1391,7 +1369,6 @@
                 "description": "Verifira se o usuário deixou o like.",
                 "operationId": "getAsLike",
                 "parameters": [
-                    
                     {
                         "name": "answerId",
                         "in": "path",
@@ -1400,7 +1377,6 @@
                         "default": "1"
                     }
                 ],
-                
                 "responses": {
                     "200": {
                         "description": "Retornar 's' se já tiver deixado like, e retorna 'n' caso não.",
@@ -1412,7 +1388,6 @@
                             }
                         }
                     },
-                    
                     "401": {
                         "description": "Acesso negado!.",
                         "content": {
@@ -1433,7 +1408,6 @@
                             }
                         }
                     },
-                    
                     "500": {
                         "description": "Erro ao buscar like",
                         "content": {
@@ -1446,7 +1420,6 @@
                     }
                 }
             }
-            
         }
     },
     "components": {
