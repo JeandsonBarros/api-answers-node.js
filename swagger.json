@@ -1454,6 +1454,9 @@
                     "answer": {
                         "type": "string"
                     },
+                    "user_name": {
+                        "type": "string"
+                    },
                     "createdAt": {
                         "type": "string"
                     },

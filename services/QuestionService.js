@@ -21,7 +21,7 @@ class QuestionService {
 
                 const user = await User.findByPk(questions[c].user)
                 questions[c].dataValues.user_name = user.name
-                      
+
             }
 
             return {
@@ -61,6 +61,13 @@ class QuestionService {
 
             const questions = await Question.findAll(querySql)
 
+            for (let c = 0; c < questions.length; c++) {
+
+                const user = await User.findByPk(questions[c].user)
+                questions[c].dataValues.user_name = user.name
+
+            }
+
             return {
                 status: 200,
                 body: {
@@ -87,6 +94,9 @@ class QuestionService {
 
             if (!questionOne)
                 return { status: 404, body: { message: "Questão não encontrada" } }
+         
+                const user = await User.findByPk(questionOne.user)
+                questionOne.dataValues.user_name = user.name    
 
             return { status: 200, body: questionOne }
 
