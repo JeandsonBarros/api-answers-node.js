@@ -26,6 +26,7 @@ async function checkToken(req, res, next) {
 }
 
 router.get("/:questionId", SuggestedAnswersController.apiSelectByQuestionId)
+router.get("/list/by/user", checkToken, SuggestedAnswersController.apiSelectByUser)
 router.post("/:questionId", checkToken, SuggestedAnswersController.apiInsert)
 router.put("/:questionId/:answerId", checkToken, SuggestedAnswersController.apiUpdate)
 router.delete("/:questionId/:answerId", checkToken, SuggestedAnswersController.apiDelete)

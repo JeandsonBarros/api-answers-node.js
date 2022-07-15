@@ -20,6 +20,17 @@ class LikeAnswerController {
 
     }
 
+    async apiSelectByUser(req, res) {
+
+        const page = req.params['page']
+        const user = req.body['user']
+
+        const like = await LikeAnswerService.selectByUser(user, page)
+
+        return res.status(like.status).json(like.body)
+
+    }
+
     async apiInsert(req, res) {
 
         const { answerId } = req.params

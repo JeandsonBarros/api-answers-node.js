@@ -14,6 +14,18 @@ class SuggestedAnswersController {
 
     }
 
+    async apiSelectByUser(req, res) {
+
+        const page = parseInt(req.query['page'])
+
+        const { user } = req.body;
+
+        const answers = await SuggestedAnswersService.selectByUser(user, page);
+
+        res.status(answers.status).json(answers.body);
+
+    }
+
     async apiInsert(req, res) {
 
         const questionId = req.params['questionId'];

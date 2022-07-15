@@ -11,6 +11,16 @@ class QuestionController {
         res.status(questions.status).json(questions.body);
     }
 
+    async apiSelectByUser(req, res) {
+
+        const page = parseInt(req.query['page'])
+        let { user } = req.body;
+
+        const questions = await QuestionService.selectByUser(user, page);
+
+        res.status(questions.status).json(questions.body);
+    }
+
     async apiSearch(req, res) {
 
         const page = parseInt(req.query['page'])
@@ -32,8 +42,6 @@ class QuestionController {
     async apiInsert(req, res) {
 
         let { matter, statement, answer, user } = req.body;
-
-        console.log("Autenticado:", req.body['user']);
 
         if (!statement)
             return res.status(422).json({ message: "Enunciado da questão é necessário" });

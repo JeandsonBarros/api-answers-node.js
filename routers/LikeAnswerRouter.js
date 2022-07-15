@@ -25,6 +25,7 @@ async function checkToken(req, res, next) {
     }
 }
 
+router.get("/", checkToken,  LikeAnswerController.apiSelectByUser)
 router.get("/:answerId",  LikeAnswerController.apiQuantitLike)
 router.post("/:answerId", checkToken, LikeAnswerController.apiInsert)
 router.get("/as-like/:answerId", checkToken, LikeAnswerController.apiAsLike)

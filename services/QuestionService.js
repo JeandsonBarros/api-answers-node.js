@@ -87,6 +87,43 @@ class QuestionService {
         }
     }
 
+    async selectByUser(user, page) {
+        try {
+            console.log(user);
+            if (page < 1 || !page) page = 1
+
+            const limit = 10;
+            const offset = limit * (page - 1);
+
+            const count = await Question.count({ where: { user } })
+           
+            const questions = await Question.findAll({ where: { user } })
+
+            for (let c = 0; c < questions.length; c++) {
+
+                const userName = await User.findByPk(user)
+                questions[c].dataValues.user_name = userName.name
+
+            }
+
+            return {
+                status: 200,
+                body: {
+                    questions,
+                    limit,
+                    offset,
+                    count,
+                    page
+                }
+
+            };
+
+        } catch (error) {
+            console.log(error);
+            return { status: 500, body: { message: "Erro ao obter questões" } }
+        }
+    }
+
     async select(id) {
         try {
 
@@ -94,9 +131,9 @@ class QuestionService {
 
             if (!questionOne)
                 return { status: 404, body: { message: "Questão não encontrada" } }
-         
-                const user = await User.findByPk(questionOne.user)
-                questionOne.dataValues.user_name = user.name    
+
+            const user = await User.findByPk(questionOne.user)
+            questionOne.dataValues.user_name = user.name
 
             return { status: 200, body: questionOne }
 

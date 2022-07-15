@@ -27,7 +27,6 @@
                 }
             ]
         }
-        
     ],
     "basePath": "/",
     "paths": {
@@ -37,7 +36,7 @@
                     "Questões"
                 ],
                 "summary": "Lista questões",
-                "description": "Retornas uma lista de questões.",
+                "description": "Retorna uma lista de questões.",
                 "operationId": "getQuestoes",
                 "parameters": [
                     {
@@ -215,7 +214,7 @@
                         }
                     },
                     "404": {
-                        "description": "Questãp não encontrada",
+                        "description": "Questão não encontrada",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -373,6 +372,45 @@
                     },
                     "500": {
                         "description": "Erro ao deletar questão",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/questions/by/user": {
+            "get": {
+                "tags": [
+                    "Questões"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Obter questão do usuário.",
+                "description": "Retornar as questões postadas pelo usuário.",
+                "operationId": "getQuestoeByUser",
+        
+                "responses": {
+                    "200": {
+                        "description": "Retorna uma lista de questões.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Questions"
+                                }
+                            }
+                        }
+                    },
+                   
+                    "500": {
+                        "description": "Erro ao buscar questões",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -896,6 +934,54 @@
                 }
             }
         },
+        "/answers/list/by/user?page={page}": {
+            "get": {
+                "tags": [
+                    "Sugestões de Respostas"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Listar sugestões de usuário respostas de uma questão.",
+                "description": "Lista as sugestões de respostas feita pelo usuário.",
+                "operationId": "getAnswersByUser",
+                "parameters": [
+                    
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Paginação.",
+                        "required": true,
+                        "default": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Listas de sugestões de respostas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Answers"
+                                }
+                            }
+                        }
+                    },
+                    
+                    "500": {
+                        "description": "Erro ao listar respostas.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/answers/{questionId}": {
             "post": {
                 "tags": [
@@ -1345,6 +1431,55 @@
                     },
                     "500": {
                         "description": "Erro ao deletar like.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/like-answers": {
+            "get": {
+                "tags": [
+                    "Like de Resposta"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Sugestões de respostas em que o usuário deu like",
+                "description": "Listar sugestões de respostas em que o usuário deu like.",
+                "operationId": "getAnswersLikes",
+            
+                "responses": {
+                    "200": {
+                        "description": "Retrona lista de sugestões de respostas em que o usuário deu like.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Acesso negado!.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao listar sugestões de respostas em que o usuário deu like.",
                         "content": {
                             "application/json": {
                                 "schema": {
