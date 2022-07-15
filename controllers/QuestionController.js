@@ -11,11 +11,11 @@ class QuestionController {
         res.status(questions.status).json(questions.body);
     }
 
-    async apiLike(req, res) {
+    async apiSearch(req, res) {
 
         const page = parseInt(req.query['page'])
         const statement = req.query['statement']
-        const questions = await QuestionService.like(statement, page);
+        const questions = await QuestionService.search(statement, page);
 
         res.status(questions.status).json(questions.body);
     }

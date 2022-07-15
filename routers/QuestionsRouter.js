@@ -28,7 +28,7 @@ async function checkToken(req, res, next) {
 
 router.get("/", QuestionController.apiSelectAll)
 
-router.get("/find", QuestionController.apiLike)
+router.get("/find", QuestionController.apiSearch)
 
 router.post("/", checkToken, QuestionController.apiInsert)
 

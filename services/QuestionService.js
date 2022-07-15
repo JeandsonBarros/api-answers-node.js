@@ -2,6 +2,7 @@ const Question = require("../models/Question");
 const LikeAnswer = require("../models/LikeAnswer");
 const Answers = require("../models/SuggestedAnswers");
 const Sequelize = require('sequelize');
+const User = require("../models/User");
 
 class QuestionService {
 
@@ -15,6 +16,13 @@ class QuestionService {
 
             const count = await Question.count();
             const questions = await Question.findAll({ limit, offset });
+
+            for (let c = 0; c < questions.length; c++) {
+
+                const user = await User.findByPk(questions[c].user)
+                questions[c].dataValues.user_name = user.name
+                      
+            }
 
             return {
                 status: 200,
@@ -33,7 +41,7 @@ class QuestionService {
         }
     }
 
-    async like(statement, page) {
+    async search(statement, page) {
         try {
 
             if (page < 1 || !page) page = 1
@@ -162,6 +170,8 @@ class QuestionService {
 
         }
     }
+
+
 
 }
 
