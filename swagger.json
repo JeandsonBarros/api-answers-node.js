@@ -10,15 +10,6 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8080/",
-            "description": "API localhost",
-            "security": [
-                {
-                    "bearerAuth": []
-                }
-            ]
-        },
-        {
             "url": "https://api-suas-questoes.herokuapp.com/",
             "description": "API em produção",
             "security": [
@@ -26,7 +17,17 @@
                     "bearerAuth": []
                 }
             ]
+        },
+        {
+            "url": "http://localhost:8080/",
+            "description": "API localhost",
+            "security": [
+                {
+                    "bearerAuth": []
+                }
+            ]
         }
+        
     ],
     "basePath": "/",
     "paths": {
