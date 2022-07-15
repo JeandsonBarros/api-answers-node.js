@@ -23,6 +23,13 @@ class SuggestedAnswers {
 
             const answers = await Answers.findAll({ where: { questionId }, limit, offset });
 
+            for (let c = 0; c < answers.length; c++) {
+
+                const userName = await User.findByPk(answers[c].user)
+                answers[c].dataValues.user_name = userName.name
+
+            }
+
             return {
                 status: 200,
                 body: {
