@@ -71,7 +71,7 @@
                 }
             }
         },
-        "/questions/?statement={statement}&page={page}": {
+        "/questions/find?statement={statement}&page={page}": {
             "get": {
                 "summary": "Buscar questão por enunciado",
                 "description": "Busca contenha enuciado informado pela query statement.",
@@ -396,7 +396,6 @@
                 "summary": "Obter questão do usuário.",
                 "description": "Retornar as questões postadas pelo usuário.",
                 "operationId": "getQuestoeByUser",
-        
                 "responses": {
                     "200": {
                         "description": "Retorna uma lista de questões.",
@@ -408,7 +407,6 @@
                             }
                         }
                     },
-                   
                     "500": {
                         "description": "Erro ao buscar questões",
                         "content": {
@@ -948,7 +946,6 @@
                 "description": "Lista as sugestões de respostas feita pelo usuário.",
                 "operationId": "getAnswersByUser",
                 "parameters": [
-                    
                     {
                         "name": "page",
                         "in": "path",
@@ -968,7 +965,6 @@
                             }
                         }
                     },
-                    
                     "500": {
                         "description": "Erro ao listar respostas.",
                         "content": {
@@ -1442,7 +1438,6 @@
                 }
             }
         },
-
         "/like-answers": {
             "get": {
                 "tags": [
@@ -1456,7 +1451,6 @@
                 "summary": "Sugestões de respostas em que o usuário deu like",
                 "description": "Listar sugestões de respostas em que o usuário deu like.",
                 "operationId": "getAnswersLikes",
-            
                 "responses": {
                     "200": {
                         "description": "Retrona lista de sugestões de respostas em que o usuário deu like.",
