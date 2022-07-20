@@ -14,9 +14,15 @@ class QuestionController {
     async apiSelectByUser(req, res) {
 
         const page = parseInt(req.query['page'])
+        const statement = req.query['search']
         let { user } = req.body;
 
-        const questions = await QuestionService.selectByUser(user, page);
+        let questions = {}
+       
+        if (statement)
+            questions = await QuestionService.searchByUser(statement, page, user)
+        else
+            questions = await QuestionService.selectByUser(user, page);
 
         res.status(questions.status).json(questions.body);
     }

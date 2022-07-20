@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "API Suas Respostas",
+        "title": "API Questões",
         "description": " API para plataformas que visa permitir que pessoas publiquem questões e respostas de atividades e trabalhos.",
         "version": "1.0",
         "contact": {
@@ -409,6 +409,59 @@
                     },
                     "500": {
                         "description": "Erro ao buscar questões",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/questions/by/user?search={statement}&page={page}": {
+            "get": {
+                "tags": [
+                    "Questões"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Buscar entre as questões do usuário.",
+                "description": "Retornar as questões do usuário com o enunciado buscado.",
+                "operationId": "findQuestoeByUser",
+                "parameters": [
+                    {
+                        "name": "statement",
+                        "in": "path",
+                        "description": "Enuciado da questão",
+                        "required": true,
+                        "default": "água"
+                    },
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Paginação.",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Retorna uma lista de questões.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Questions"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao buscar questão",
                         "content": {
                             "application/json": {
                                 "schema": {

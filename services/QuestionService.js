@@ -87,6 +87,53 @@ class QuestionService {
         }
     }
 
+    async searchByUser(statement, page, user) {
+        try {
+
+            if (page < 1 || !page) page = 1
+
+            const limit = 10;
+            const offset = limit * (page - 1);
+            const querySql = {
+                where: {
+                    statement: {
+                        [Sequelize.Op.like]: "%" + statement + "%"
+                    }, 
+                    user
+                },
+                limit, offset
+            }
+
+            const count = await Question.count(querySql);
+
+            const questions = await Question.findAll(querySql)
+
+            for (let c = 0; c < questions.length; c++) {
+
+                const user = await User.findByPk(questions[c].user)
+                questions[c].dataValues.user_name = user.name
+
+            }
+
+            return {
+                status: 200,
+                body: {
+                    questions,
+                    limit,
+                    offset,
+                    count,
+                    page
+
+                }
+            };
+
+        } catch (error) {
+            return {
+                status: 500, body: { message: "Erro ao buscar questões" }
+            };
+        }
+    }
+
     async selectByUser(user, page) {
         try {
             console.log(user);

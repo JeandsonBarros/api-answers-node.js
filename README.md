@@ -1,4 +1,4 @@
-# About your questions powered by Node.js
+# About questions powered by Node.js
 
 ## Description
 
