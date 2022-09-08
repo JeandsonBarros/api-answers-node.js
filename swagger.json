@@ -10,15 +10,6 @@
     },
     "servers": [
         {
-            "url": "https://api-suas-questoes.herokuapp.com/",
-            "description": "API em produção",
-            "security": [
-                {
-                    "bearerAuth": []
-                }
-            ]
-        },
-        {
             "url": "http://localhost:8080/",
             "description": "API localhost",
             "security": [
@@ -26,7 +17,17 @@
                     "bearerAuth": []
                 }
             ]
+        },
+        {
+            "url": "https://api-suas-questoes.herokuapp.com/",
+            "description": "API em produção",
+            "security": [
+                {
+                    "bearerAuth": []
+                }
+            ]
         }
+        
     ],
     "basePath": "/",
     "paths": {
@@ -473,7 +474,7 @@
                 }
             }
         },
-        "/auth/user/{email}": {
+        "/auth/user": {
             "get": {
                 "tags": [
                     "User"
@@ -486,15 +487,7 @@
                 "summary": "Rotornar dados do usuário.",
                 "description": "Rotona dados do usuário logado.",
                 "operationId": "getUser",
-                "parameters": [
-                    {
-                        "name": "email",
-                        "in": "path",
-                        "description": "E-mail do usuário que se deseja buscar.",
-                        "required": true,
-                        "default": "exemplo@email.com.br"
-                    }
-                ],
+                
                 "responses": {
                     "200": {
                         "description": "Confirmação de que o usuário foi editado",

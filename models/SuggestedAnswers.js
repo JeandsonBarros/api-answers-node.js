@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const database = require('../Database');
 
-const answer = database.define('answer', {
+let answer = database.define('answer', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -15,6 +15,7 @@ const answer = database.define('answer', {
             model: "users",
             key: 'email'
         },
+        onDelete: 'CASCADE',
         allowNull: false,
     },
 
@@ -24,6 +25,7 @@ const answer = database.define('answer', {
             model: "questions",
             key: 'id'
         },
+        onDelete: 'CASCADE',
         allowNull: false,
     },
 

@@ -52,7 +52,7 @@ class UserController {
 
     async apiSelectOne(req, res){
 
-        const email = req.params['email'];
+        const email = req.body['authenticated']
 
         const user = await UserService.selectOne(email);
 

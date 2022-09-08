@@ -16,6 +16,7 @@ const LikeSuggestionAnswer = database.define('like_suggestion_answer', {
             model: "users",
             key: 'email'
         },
+        onDelete: 'CASCADE',
         allowNull: false,
     },
 
@@ -25,6 +26,7 @@ const LikeSuggestionAnswer = database.define('like_suggestion_answer', {
             model: "answers",
             key: 'id'
         },
+        onDelete: 'CASCADE',
         allowNull: false,
     }
 

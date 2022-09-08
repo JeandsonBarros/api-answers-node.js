@@ -163,8 +163,6 @@ class SuggestedAnswers {
             if (answerOne.length === 0)
                 return { status: 404, body: { message: "Resposta não encontrada" } }
 
-            await LikeAnswer.destroy({ where: { answerId: id } })
-
             await Answers.destroy({ where: { user, id, questionId } });
 
             return { status: 200, body: { message: "Resposta deletada" } }

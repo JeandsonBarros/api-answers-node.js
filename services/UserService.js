@@ -91,9 +91,6 @@ class UserService {
             if (!checkPassword)
                 return { status: 203, body: { message: "Senha incorreta!" } }
 
-            await LikeAnswer.destroy({ where: { user: email } })
-            await Answers.destroy({ where: { user: email } })
-            await Question.destroy({ where: { user: email } })  
             await user.destroy({ where: { email } })
 
             return { status: 200, body: { message: "Usuário deletado!" } }

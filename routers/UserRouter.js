@@ -18,8 +18,6 @@ async function checkToken(req, res, next) {
 
         req.body['authenticated'] = content.email;
 
-        console.log(content.email);
-
         next();
 
     } catch (error) {
@@ -29,7 +27,7 @@ async function checkToken(req, res, next) {
 
 router.post("/register", UserController.apiInsert)
 router.post("/login", UserController.apiLogin)
-router.get("/user/:email", checkToken, UserController.apiSelectOne)
+router.get("/user", checkToken, UserController.apiSelectOne)
 router.put("/update/:email", checkToken, UserController.apiUpdate)
 router.delete("/delete/:email", checkToken, UserController.apiDelete)
 

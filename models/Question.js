@@ -15,6 +15,7 @@ const Question = database.define('question', {
             model: "users",
             key: 'email'
         },
+        onDelete: 'CASCADE',
         allowNull: false,
     },
 

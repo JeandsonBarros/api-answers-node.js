@@ -126,6 +126,7 @@ class LikeAnswerServide {
                 return { status: 404, body: { message: "Like não encontrado" } }
 
             await LikeAnswer.destroy({ where: { id, user } })
+            
             return { status: 200, body: { message: "Like removido" } }
 
         } catch (error) {

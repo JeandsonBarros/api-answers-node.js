@@ -245,16 +245,6 @@ class QuestionService {
             if (questionOne.length === 0)
                 return { status: 404, body: { message: "Questão não encontrada" } }
 
-
-
-            const answersSelect = await Answers.findAll({ where: { questionId: id } })
-
-            answersSelect.forEach(async item => {
-                await LikeAnswer.destroy({ where: { answerId: item.id } })
-            });
-
-            await Answers.destroy({ where: { questionId: id } })
-
             await Question.destroy({ where: { id, user } });
 
             return { status: 200, body: { message: "Questão deletada" } }
