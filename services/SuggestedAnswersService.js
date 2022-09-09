@@ -1,5 +1,4 @@
 const Answers = require("../models/SuggestedAnswers");
-const LikeAnswer = require("../models/LikeAnswer");
 const Question = require("../models/Question");
 const User = require("../models/User");
 
@@ -10,16 +9,16 @@ class SuggestedAnswers {
 
             const questionOne = await Question.findByPk(questionId);
 
-            if(!questionOne)
-                return {status: 404, body: {message: "Não existe uma questão com esse id"}}
-            
+            if (!questionOne)
+                return { status: 404, body: { message: "Não existe uma questão com esse id" } }
+
 
             if (page < 1 || !page) page = 1
 
             const limit = 10;
             const offset = limit * (page - 1);
 
-            const count = await Answers.count({ where: { questionId }});
+            const count = await Answers.count({ where: { questionId } });
 
             const answers = await Answers.findAll({ where: { questionId }, limit, offset });
 
@@ -54,14 +53,14 @@ class SuggestedAnswers {
 
     async selectByUser(user, page) {
         try {
-            
+
             if (page < 1 || !page) page = 1
 
             const limit = 10;
             const offset = limit * (page - 1);
 
             const count = await Answers.count({ where: { user } })
-           
+
             const answers = await Answers.findAll({ where: { user } })
 
             for (let c = 0; c < answers.length; c++) {
@@ -89,8 +88,41 @@ class SuggestedAnswers {
         }
     }
 
+    async apiSelectOneByUser(user, questionId) {
+        try {
+
+            const answerOne = await Answers.findAll({
+                where: {
+                    user: user, questionId: questionId
+                }
+            })
+
+            if (answerOne.length == 0)
+                return { status: 404, body: { message: "Sugestão de resposta não encontrada." } }
+
+            return {
+                status: 200,
+                body: answerOne[0] 
+            }
+
+
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async insert(questionId, user, answer) {
         try {
+
+            const answerOne = await Answers.findAll({
+                where: {
+                    user: user, questionId: questionId
+                }
+            })
+
+            if (answerOne.length > 0)
+                return { status: 401, body: { message: "Você já deixou uma sugestão de resposta nessa questão." } }
 
             await Answers.create({ questionId, user, answer })
 

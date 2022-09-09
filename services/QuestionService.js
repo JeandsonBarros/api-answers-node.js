@@ -1,6 +1,4 @@
 const Question = require("../models/Question");
-const LikeAnswer = require("../models/LikeAnswer");
-const Answers = require("../models/SuggestedAnswers");
 const Sequelize = require('sequelize');
 const User = require("../models/User");
 

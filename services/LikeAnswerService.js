@@ -1,6 +1,5 @@
 const LikeAnswer = require("../models/LikeAnswer");
 const User = require("../models/User");
-const Question = require("../models/Question");
 const Answers = require("../models/SuggestedAnswers");
 
 class LikeAnswerServide {

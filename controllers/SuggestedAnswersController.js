@@ -14,6 +14,21 @@ class SuggestedAnswersController {
 
     }
 
+    async apiSelectOneByUser(req, res){
+        try {
+            
+            const questionId = req.params['questionId'];
+            const { user } = req.body;
+
+            const answer = await SuggestedAnswersService.apiSelectOneByUser(user, questionId)
+
+            res.status(answer.status).json(answer.body);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async apiSelectByUser(req, res) {
 
         const page = parseInt(req.query['page'])

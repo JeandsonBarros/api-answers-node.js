@@ -1,7 +1,4 @@
 const User = require("../models/User");
-const LikeAnswer = require("../models/LikeAnswer");
-const Answers = require("../models/SuggestedAnswers");
-const Question = require("../models/Question");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require('dotenv').config()

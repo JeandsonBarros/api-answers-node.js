@@ -989,7 +989,7 @@
                         "bearerAuth": []
                     }
                 ],
-                "summary": "Listar sugestões de usuário respostas de uma questão.",
+                "summary": "Listar sugestões de respostas do usuário.",
                 "description": "Lista as sugestões de respostas feita pelo usuário.",
                 "operationId": "getAnswersByUser",
                 "parameters": [
@@ -1118,7 +1118,71 @@
                 }
             }
         },
-        "/answers/{questionId}/{answerId}": {
+        "/answers/{questionId}/answer/user": {
+            "get": {
+                "tags": [
+                    "Sugestões de Respostas"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Retornar uma resposta do usuário para uma questão.",
+                "description": "Retorna uma sugestão de resposta que o usuário logado deixou para uma questão.",
+                "operationId": "getOneAnswer",
+                "parameters": [
+                    {
+                        "name": "questionId",
+                        "in": "path",
+                        "description": "Id da questão em que vai obter a sugestão de resposta.",
+                        "required": true,
+                        "default": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rertonar sugestão de resposta.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Acesso negado!.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Não existe uma questão com esse id.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao obter sugestão de resposta.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "Sugestões de Respostas"
@@ -1288,6 +1352,7 @@
                     }
                 }
             }
+            
         },
         "/like-answers/{answerId}": {
             "get": {
