@@ -88,7 +88,7 @@ class SuggestedAnswers {
         }
     }
 
-    async apiSelectOneByUser(user, questionId) {
+    async selectOneByUser(user, questionId) {
         try {
 
             const answerOne = await Answers.findAll({

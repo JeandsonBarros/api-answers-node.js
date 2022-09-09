@@ -1182,7 +1182,10 @@
                         }
                     }
                 }
-            },
+            }
+            
+        },
+        "/answers/{questionId}/{answerId}": {
             "put": {
                 "tags": [
                     "Sugestões de Respostas"
@@ -1194,7 +1197,7 @@
                 ],
                 "summary": "Editar sugestão de respostas.",
                 "description": "Edita sugestão de resposta feita pelo usuário logado.",
-                "operationId": "postAnswer",
+                "operationId": "putAnswer",
                 "parameters": [
                     {
                         "name": "questionId",
@@ -1292,7 +1295,7 @@
                 ],
                 "summary": "Deletar sugestão de resposta.",
                 "description": "Deleta sugestão de resposta para questão.",
-                "operationId": "postAnswer",
+                "operationId": "deleteAnswer",
                 "parameters": [
                     {
                         "name": "questionId",

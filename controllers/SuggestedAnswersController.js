@@ -20,7 +20,7 @@ class SuggestedAnswersController {
             const questionId = req.params['questionId'];
             const { user } = req.body;
 
-            const answer = await SuggestedAnswersService.apiSelectOneByUser(user, questionId)
+            const answer = await SuggestedAnswersService.selectOneByUser(user, questionId)
 
             res.status(answer.status).json(answer.body);
 
