@@ -29,6 +29,6 @@ router.get("/", checkToken,  LikeAnswerController.apiSelectByUser)
 router.get("/:answerId",  LikeAnswerController.apiQuantitLike)
 router.post("/:answerId", checkToken, LikeAnswerController.apiInsert)
 router.get("/as-like/:answerId", checkToken, LikeAnswerController.apiAsLike)
-router.delete("/:id", checkToken, LikeAnswerController.apiDelete)
+router.delete("/:answerId", checkToken, LikeAnswerController.apiDelete)
 
 module.exports = router;

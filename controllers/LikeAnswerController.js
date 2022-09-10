@@ -47,10 +47,10 @@ class LikeAnswerController {
 
     async apiDelete(req, res) {
 
-        const id = req.params['id']
+        const answerId = req.params['answerId']
         const user = req.body['user']
 
-        const like = await LikeAnswerService.delete(id, user)
+        const like = await LikeAnswerService.delete(answerId, user)
 
         return res.status(like.status).json(like.body)
 

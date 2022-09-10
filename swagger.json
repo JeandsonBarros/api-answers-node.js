@@ -1485,9 +1485,7 @@
                         }
                     }
                 }
-            }
-        },
-        "/like-answers/{id}": {
+            },
             "delete": {
                 "tags": [
                     "Like de Resposta"
@@ -1502,9 +1500,9 @@
                 "operationId": "deleteLike",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "answerId",
                         "in": "path",
-                        "description": "Id do like.",
+                        "description": "Id da resposta em foi dado o like.",
                         "required": true,
                         "default": "1"
                     }

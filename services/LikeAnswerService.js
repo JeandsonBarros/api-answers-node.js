@@ -116,15 +116,15 @@ class LikeAnswerServide {
         }
     }
 
-    async delete(id, user) {
+    async delete(answerId, user) {
         try {
 
-            const likes = await LikeAnswer.findAll({ where: { id, user } })
+            const likes = await LikeAnswer.findAll({ where: { answerId, user } })
 
             if (likes.length == 0)
                 return { status: 404, body: { message: "Like não encontrado" } }
 
-            await LikeAnswer.destroy({ where: { id, user } })
+            await LikeAnswer.destroy({ where: { answerId, user } })
             
             return { status: 200, body: { message: "Like removido" } }
 

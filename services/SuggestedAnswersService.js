@@ -166,7 +166,7 @@ class SuggestedAnswers {
             return {
                 status: 200,
                 body: {
-                    message: "Resposta salva",
+                    message: "Resposta editada",
                     answer: answer
                 }
             }
