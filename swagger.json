@@ -385,7 +385,7 @@
                 }
             }
         },
-        "/questions/by/user": {
+        "/questions/by/user?page={page}": {
             "get": {
                 "tags": [
                     "Questões"
@@ -398,6 +398,15 @@
                 "summary": "Obter questão do usuário.",
                 "description": "Retornar as questões postadas pelo usuário.",
                 "operationId": "getQuestoeByUser",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Página das questões.",
+                        "required": false,
+                        "default": 1
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Retorna uma lista de questões.",
@@ -1014,6 +1023,59 @@
                     },
                     "500": {
                         "description": "Erro ao listar respostas.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Message"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/answers/list/by/user?search={answer}&page={page}": {
+            "get": {
+                "tags": [
+                    "Sugestões de Respostas"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Buscar sugestões de respostas do usuário.",
+                "description": "Pesquisa sugestões de respostas feita pelo usuário.",
+                "operationId": "searchAnswersByUser",
+                "parameters": [
+                    {
+                        "name": "answer",
+                        "in": "path",
+                        "description": "Termo que vai ser buscado entre as respostas.",
+                        "required": true,
+                        "default": "1+1"
+                    },
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Paginação.",
+                        "required": true,
+                        "default": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de sugestões de respostas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Answers"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao buscar respostas.",
                         "content": {
                             "application/json": {
                                 "schema": {

@@ -46,18 +46,23 @@ class QuestionService {
 
             const limit = 10;
             const offset = limit * (page - 1);
-            const querySql = {
+
+            const count = await Question.count({
+                where: {
+                    statement: {
+                        [Sequelize.Op.like]: "%" + statement + "%"
+                    }
+                }     
+            });
+
+            const questions = await Question.findAll({
                 where: {
                     statement: {
                         [Sequelize.Op.like]: "%" + statement + "%"
                     }
                 },
                 limit, offset
-            }
-
-            const count = await Question.count(querySql);
-
-            const questions = await Question.findAll(querySql)
+            })
 
             for (let c = 0; c < questions.length; c++) {
 
@@ -92,19 +97,25 @@ class QuestionService {
 
             const limit = 10;
             const offset = limit * (page - 1);
-            const querySql = {
+
+            const count = await Question.count({
                 where: {
                     statement: {
                         [Sequelize.Op.like]: "%" + statement + "%"
-                    }, 
+                    },
+                    user
+                }
+            });
+
+            const questions = await Question.findAll({
+                where: {
+                    statement: {
+                        [Sequelize.Op.like]: "%" + statement + "%"
+                    },
                     user
                 },
                 limit, offset
-            }
-
-            const count = await Question.count(querySql);
-
-            const questions = await Question.findAll(querySql)
+            })
 
             for (let c = 0; c < questions.length; c++) {
 
@@ -134,15 +145,15 @@ class QuestionService {
 
     async selectByUser(user, page) {
         try {
-            console.log(user);
+
             if (page < 1 || !page) page = 1
 
             const limit = 10;
             const offset = limit * (page - 1);
 
             const count = await Question.count({ where: { user } })
-           
-            const questions = await Question.findAll({ where: { user } })
+
+            const questions = await Question.findAll({ where: { user }, limit, offset })
 
             for (let c = 0; c < questions.length; c++) {
 

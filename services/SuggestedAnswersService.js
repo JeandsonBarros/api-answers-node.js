@@ -1,6 +1,7 @@
 const Answers = require("../models/SuggestedAnswers");
 const Question = require("../models/Question");
 const User = require("../models/User");
+const Sequelize = require('sequelize');
 
 class SuggestedAnswers {
 
@@ -61,8 +62,61 @@ class SuggestedAnswers {
 
             const count = await Answers.count({ where: { user } })
 
-            const answers = await Answers.findAll({ where: { user } })
+            const answers = await Answers.findAll({ where: { user }, limit, offset })
 
+            for (let c = 0; c < answers.length; c++) {
+
+                const userName = await User.findByPk(user)
+                answers[c].dataValues.user_name = userName.name
+
+            }
+
+            return {
+                status: 200,
+                body: {
+                    answers,
+                    limit,
+                    offset,
+                    count,
+                    page
+                }
+
+            };
+
+        } catch (error) {
+            console.log(error);
+            return { status: 500, body: { message: "Erro ao obter respostas" } }
+        }
+    }
+
+    async searchByUser(user, page, search) {
+        try {
+
+            if (page < 1 || !page) page = 1
+
+            const limit = 10;
+            const offset = limit * (page - 1);
+
+            const count = await Answers.count({
+                where: {
+                    answer: {
+                        [Sequelize.Op.like]: "%" + search + "%"
+                    },
+                    user
+                }
+            })
+
+            const answers = await Answers.findAll({
+                where: {
+                    answer: {
+                        [Sequelize.Op.like]: "%" + search + "%"
+                    },
+                    user
+                },
+                limit, offset
+            })
+
+        
             for (let c = 0; c < answers.length; c++) {
 
                 const userName = await User.findByPk(user)

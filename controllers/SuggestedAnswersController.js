@@ -14,9 +14,9 @@ class SuggestedAnswersController {
 
     }
 
-    async apiSelectOneByUser(req, res){
+    async apiSelectOneByUser(req, res) {
         try {
-            
+
             const questionId = req.params['questionId'];
             const { user } = req.body;
 
@@ -32,10 +32,17 @@ class SuggestedAnswersController {
     async apiSelectByUser(req, res) {
 
         const page = parseInt(req.query['page'])
+        const search = req.query['search']
 
         const { user } = req.body;
+        let answers = []
 
-        const answers = await SuggestedAnswersService.selectByUser(user, page);
+        if (search) { 
+            answers = await SuggestedAnswersService.searchByUser(user, page, search);
+        }
+        else {
+            answers = await SuggestedAnswersService.selectByUser(user, page);
+        }
 
         res.status(answers.status).json(answers.body);
 
@@ -81,7 +88,7 @@ class SuggestedAnswersController {
 
         const user = req.body['user'];
 
-        const answers = await SuggestedAnswersService.delete( answerId, user, questionId);
+        const answers = await SuggestedAnswersService.delete(answerId, user, questionId);
 
         res.status(answers.status).json(answers.body);
 
