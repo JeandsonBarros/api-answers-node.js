@@ -13,6 +13,7 @@ class QuestionService {
             const offset = limit * (page - 1);
 
             const count = await Question.count();
+
             const questions = await Question.findAll({ limit, offset });
 
             for (let c = 0; c < questions.length; c++) {
@@ -29,7 +30,8 @@ class QuestionService {
                     limit,
                     offset,
                     count,
-                    page
+                    page,
+                    total_pages: Math.ceil(count / limit)
                 }
 
             };
@@ -52,7 +54,7 @@ class QuestionService {
                     statement: {
                         [Sequelize.Op.like]: "%" + statement + "%"
                     }
-                }     
+                }
             });
 
             const questions = await Question.findAll({
@@ -78,7 +80,8 @@ class QuestionService {
                     limit,
                     offset,
                     count,
-                    page
+                    page,
+                    total_pages: Math.ceil(count / limit)
 
                 }
             };
@@ -131,7 +134,8 @@ class QuestionService {
                     limit,
                     offset,
                     count,
-                    page
+                    page,
+                    total_pages: Math.ceil(count / limit)
 
                 }
             };
@@ -169,7 +173,8 @@ class QuestionService {
                     limit,
                     offset,
                     count,
-                    page
+                    page,
+                    total_pages: Math.ceil(count / limit)
                 }
 
             };

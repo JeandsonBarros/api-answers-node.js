@@ -54,7 +54,8 @@ class LikeAnswerServide {
                     limit,
                     offset,
                     count,
-                    page
+                    page,
+                    total_pages: Math.ceil(count / limit)
                 }
 
             };

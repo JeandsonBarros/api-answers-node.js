@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "API Questões",
+        "title": "API Answers",
         "description": " API para plataformas que visa permitir que pessoas publiquem questões e respostas de atividades e trabalhos.",
         "version": "1.0",
         "contact": {
@@ -1801,6 +1801,9 @@
                         "type": "integer"
                     },
                     "page": {
+                        "type": "integer"
+                    },
+                    "total_pages": {
                         "type": "integer"
                     },
                     "count": {

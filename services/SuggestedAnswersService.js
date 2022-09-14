@@ -37,7 +37,8 @@ class SuggestedAnswers {
                     limit,
                     offset,
                     count,
-                    page
+                    page,
+                    total_pages: Math.ceil(count / limit)
                 }
             }
 
@@ -78,7 +79,8 @@ class SuggestedAnswers {
                     limit,
                     offset,
                     count,
-                    page
+                    page,
+                    total_pages: Math.ceil(count / limit)
                 }
 
             };
@@ -131,7 +133,8 @@ class SuggestedAnswers {
                     limit,
                     offset,
                     count,
-                    page
+                    page,
+                    total_pages: Math.ceil(count / limit)
                 }
 
             };
