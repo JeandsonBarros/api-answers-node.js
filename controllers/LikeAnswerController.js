@@ -22,8 +22,10 @@ class LikeAnswerController {
 
     async apiSelectByUser(req, res) {
 
-        const page = req.params['page']
+        const page = parseInt(req.query['page'])
         const user = req.body['user']
+
+        console.log(page);
 
         const like = await LikeAnswerService.selectByUser(user, page)
 
