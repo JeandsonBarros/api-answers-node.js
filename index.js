@@ -52,7 +52,8 @@ database.sync().then(() => {
 
     app.listen(process.env.PORT || 8080, () => {
         console.log("========================");
-        console.log("| Escutando porta 8080 |");
+        console.log("| Escutando porta 8080  |");
+        console.log("| http://localhost:8080 |");
         console.log("========================");
     });
 

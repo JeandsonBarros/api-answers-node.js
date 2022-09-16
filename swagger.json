@@ -1613,7 +1613,7 @@
                 }
             }
         },
-        "/like-answers": {
+        "/like-answers?page={page}": {
             "get": {
                 "tags": [
                     "Like de Resposta"
@@ -1626,6 +1626,15 @@
                 "summary": "Sugestões de respostas em que o usuário deu like",
                 "description": "Listar sugestões de respostas em que o usuário deu like.",
                 "operationId": "getAnswersLikes",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Paginação.",
+                        "required": true,
+                        "default": "1"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Retrona lista de sugestões de respostas em que o usuário deu like.",
